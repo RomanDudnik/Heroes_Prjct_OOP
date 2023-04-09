@@ -35,7 +35,10 @@ public abstract class BaseHero implements GameInterface {
                 " Dmg:" + Math.round(Math.abs((damageMin + damageMax)/2)) +
                 " " + state;
     }
+    // метод для получения/пробрасывания координат (для расстановки на поле/визуал):
     public int[] getCoords() {return new int[]{coords.posX, coords.posY};}
+
+    // конструктор для героя (базовый абстрактный клас):
     protected BaseHero(float hp, int maxHp, int attack, int damageMin,
                        int damageMax, int defense, int initiative, int posX, int posY, String class_name) {
         this.name = getName();

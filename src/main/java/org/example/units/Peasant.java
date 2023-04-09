@@ -12,7 +12,7 @@ public class Peasant extends BaseHero {
                 3, coords.posX, coords.posY, "Peasant");
         warheads = 1;
     }
-    // определение состояния объекта:
+    // определение состояния объекта(этого подкласса):
     @Override
     public void step(ArrayList<BaseHero> team1, ArrayList<BaseHero> team2) {
         if (!state.equals("Die")) state = "Stand";

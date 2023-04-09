@@ -11,9 +11,9 @@ public abstract class Shooter extends BaseHero {
 
     protected Shooter(float hp, int maxHp, int attack, int damageMin,
                       int damageMax, int defense, int speed, int ammo,
-                      int range, int posX, int posY, String class_name) {
+                      int accuracy, int posX, int posY, String class_name) {
         super(hp, maxHp, attack, damageMin, damageMax, defense, speed, posX, posY, class_name);
-        this.accuracy = range;
+        this.accuracy = accuracy;
         this.ammo = ammo;
     }
 
@@ -21,6 +21,9 @@ public abstract class Shooter extends BaseHero {
 
     // метод действия/хода персонажа данного класса:
     // условие для реализации - жив и есть стрелы
+    // крестьянин занят ammo--, крестьянин в ожидании ammo без изменений
+    // если если после выстрела крестьянин был в состоянии Stand, перевести состояние на Busy
+    // иначе -1 боеприпас
 
     @Override
     public void step(ArrayList<BaseHero> team1, ArrayList<BaseHero> team2) {
@@ -36,7 +39,7 @@ public abstract class Shooter extends BaseHero {
         }
         ammo--;
     }
-    // переопределение(для данного подкласса) для метода получения информации для героя в визуале консоли:
+    // переопределение(для данного подкласса) для метода получения информации о герое в визуале консоли:
     @Override
     public String toString() {
         return name +

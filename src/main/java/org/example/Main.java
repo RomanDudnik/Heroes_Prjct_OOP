@@ -17,7 +17,7 @@ public class Main {
     public static ArrayList<BaseHero> allTeam = new ArrayList<>();
 
     public static void main(String[] args) {
-        init();                                 // вызываем метод для инициализации команд
+        init();                                 // вызываем метод для инициализации персонажей для формирования команд
         Scanner input = new Scanner(System.in);
         while (true){
             allTeam = sortTeam();               // заполняем список персонажами обеих команд с сортировкой по инициативе
@@ -35,30 +35,30 @@ public class Main {
         for (int i = 0; i < UNITS; i++) {
             switch (new Random().nextInt(4)) {
                 case 0:
-                    teamLight.add(new Crossbowman(new Vector2D(i+1, 10)));
+                    teamLight.add(new Crossbowman(new Vector2D(i+1, 1)));
                     break;
                 case 1:
-                    teamLight.add(new Monk(new Vector2D(i+1, 10)));
+                    teamLight.add(new Monk(new Vector2D(i+1, 1)));
                     break;
                 case 2:
-                    teamLight.add(new Spearman(new Vector2D(i+1, 10)));
+                    teamLight.add(new Spearman(new Vector2D(i+1, 1)));
                     break;
                 default:
-                    teamLight.add(new Peasant(new Vector2D(i+1, 10)));
+                    teamLight.add(new Peasant(new Vector2D(i+1, 1)));
             }
 
             switch (new Random().nextInt(4)) {
                 case 0:
-                    teamChaos.add(new Sniper(new Vector2D(i+1, 1)));
+                    teamChaos.add(new Sniper(new Vector2D(i+1, 10)));
                     break;
                 case 1:
-                    teamChaos.add(new Wizard(new Vector2D(i+1, 1)));
+                    teamChaos.add(new Wizard(new Vector2D(i+1, 10)));
                     break;
                 case 3:
-                    teamChaos.add(new Thief(new Vector2D(i+1, 1)));
+                    teamChaos.add(new Thief(new Vector2D(i+1, 10)));
                     break;
                 default:
-                    teamChaos.add(new Peasant(new Vector2D(i+1, 1)));
+                    teamChaos.add(new Peasant(new Vector2D(i+1, 10)));
 
             }
         }
@@ -76,7 +76,7 @@ public class Main {
             public int compare(BaseHero t1, BaseHero t2) {
                 if (t2.getInitiative() == t1.getInitiative()) {
                     return (int) (t2.getHp() - t1.getHp());
-                } else return (int) t2.getInitiative() - t1.getInitiative();
+                } else return (int) (t2.getInitiative() - t1.getInitiative());
             }
         });
         return list;
