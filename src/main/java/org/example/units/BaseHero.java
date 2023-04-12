@@ -4,6 +4,7 @@
  * поля protected видны/можно вызвать только внутри пакета (*units)
  */
 package org.example.units;
+import org.example.AnsiColors;
 import org.example.Names;
 
 import java.util.ArrayList;
@@ -29,9 +30,9 @@ public abstract class BaseHero implements GameInterface {
     public  String toString() {
         return  name +
                 "(" + class_name + ")" +
-                " H:" + Math.round(hp) +
-                " D:" + defense +
-                " A:" + attack +
+                " \u2665:" + Math.round(hp) +
+                " \u26E8:" + defense +
+                " \u2694:" + attack +
                 " Dmg:" + Math.round(Math.abs((damageMin + damageMax)/2)) +
                 " " + state;
     }
@@ -58,17 +59,17 @@ public abstract class BaseHero implements GameInterface {
     public int getInitiative() { return initiative;}
     public float getHp() { return hp;}
     @Override                // переопределение метода
-    public void step(ArrayList<BaseHero> team1, ArrayList<BaseHero> team2){}    // заглушки для интерфеса, пока мы им не пользуемся(не реализуем)
+    public void step(ArrayList<BaseHero> friends, ArrayList<BaseHero> enemies){}
 
 
     // метод поиска ближайшего противника (по его координатам) :
     public int findNearest(ArrayList<BaseHero> team){
         int index = 0;
-        double min = Double.MAX_VALUE;
-        for (int i = 0; i < team.size(); i++) {
-            if(min > coords.getDistance(team.get(i).coords) && !team.get(i).state.equals("Die")) {
+        double min = this.coords.distance(team.get(0));
+        for (int i = 1; i < team.size(); i++) {
+            if(this.coords.distance(team.get(i)) < min && !team.get(i).state.equals("Die")) {
+                min = this.coords.distance(team.get(i));
                 index = i;
-                min = coords.getDistance(team.get(i).coords);
             }
         }
         return index;

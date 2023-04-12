@@ -14,7 +14,7 @@ public class Peasant extends BaseHero {
     }
     // определение состояния объекта(этого подкласса):
     @Override
-    public void step(ArrayList<BaseHero> team1, ArrayList<BaseHero> team2) {
+    public void step(ArrayList<BaseHero> friends, ArrayList<BaseHero> enemies) {
         if (!state.equals("Die")) state = "Stand";
     }
 

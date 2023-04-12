@@ -10,9 +10,9 @@ public abstract class Shooter extends BaseHero {
     int accuracy;       // точность выстрела
 
     protected Shooter(float hp, int maxHp, int attack, int damageMin,
-                      int damageMax, int defense, int speed, int ammo,
+                      int damageMax, int defense, int initiative, int ammo,
                       int accuracy, int posX, int posY, String class_name) {
-        super(hp, maxHp, attack, damageMin, damageMax, defense, speed, posX, posY, class_name);
+        super(hp, maxHp, attack, damageMin, damageMax, defense, initiative, posX, posY, class_name);
         this.accuracy = accuracy;
         this.ammo = ammo;
     }
@@ -26,29 +26,32 @@ public abstract class Shooter extends BaseHero {
     // иначе -1 боеприпас
 
     @Override
-    public void step(ArrayList<BaseHero> team1, ArrayList<BaseHero> team2) {
+    public void step(ArrayList<BaseHero> friends, ArrayList<BaseHero> enemies) {
         if (state.equals("Die") || ammo == 0) return;
-        BaseHero target = team2.get(findNearest(team2));
-        float damage = (target.defense - attack)>0 ? damageMin : (target.defense - attack)<0 ? damageMax : (damageMin+damageMax)/2;
+        BaseHero target = enemies.get(findNearest(enemies));
+        float damage = (target.defense - attack)>0
+                ? damageMin : (defense - attack)<0
+                ? damageMax : (damageMin+damageMax)/2;
         target.getDamage(damage);
-        for (BaseHero unit: team1) {
+        for (BaseHero unit: friends) {
             if (unit.getInfo().toString().split(":")[0].equals("Peasant") && unit.state.equals("Stand")) {
                 unit.state = "Busy";
                 return;
             }
         }
-        ammo--;
+        this.ammo--;
     }
+
     // переопределение(для данного подкласса) для метода получения информации о герое в визуале консоли:
     @Override
     public String toString() {
         return name +
                 "(" + class_name + ")" +
-                " H:" + Math.round(hp) +
-                " D:" + defense +
-                " A:" + attack +
+                " \u2665: " + Math.round(hp) +
+                " \u26E8:" + defense +
+                " \u2694:" + attack +
                 " Dmg:" + Math.round(Math.abs((damageMin+damageMax)/2)) +
-                " Shots:" + ammo + " " +
+                " \u27B6:" + ammo + " " +
                 state;
     }
 

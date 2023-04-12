@@ -9,7 +9,12 @@ public class Vector2D {
         this.posY = posY;
     }
 
-    protected double getDistance(Vector2D enemy){
-        return Math.sqrt(Math.pow(posX - enemy.posX,2) + Math.pow(posY - enemy.posY,2));
+    public float distance (BaseHero enemy) {
+        float dx = Math.abs(posX - enemy.coords.posX);
+        float dy = Math.abs(posY - enemy.coords.posY);
+        return (float) Math.round(Math.sqrt(dx*dx+dy*dy));
+    }
+    public int [] direction (BaseHero enemy) {
+        return new int[]{enemy.coords.posX - this.posX, enemy.coords.posY - this.posY};
     }
 }

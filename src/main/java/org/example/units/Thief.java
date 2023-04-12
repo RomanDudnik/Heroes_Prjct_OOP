@@ -3,11 +3,11 @@
  */
 package org.example.units;
 
-public class Thief extends BaseHero {
+public class Thief extends Infantry {
     int stealthMode;
     public Thief(Vector2D coords) {
         super(70.f, 70, 10, 2, 6, 7,
-                6, coords.posX, coords.posY, "Thief");
+                7, coords.posX, coords.posY, "Thief");
         stealthMode = 50;
     }
 

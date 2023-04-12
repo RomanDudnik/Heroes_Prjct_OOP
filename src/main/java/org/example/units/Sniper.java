@@ -9,7 +9,7 @@ public class Sniper extends Shooter {
     public Sniper (Vector2D coords) {
 
         super(60.f, 60, 10, 3, 5, 3,
-                9, 22, 10, coords.posX, coords.posY, "Sniper");
+                8, 22, 10, coords.posX, coords.posY, "Sniper");
     }
 
     // реализуем метод интерфеса:

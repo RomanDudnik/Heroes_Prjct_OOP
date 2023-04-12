@@ -3,7 +3,7 @@
  */
 package org.example.units;
 
-public class Spearman extends BaseHero {
+public class Spearman extends Infantry {
     protected  int death_blow;
     public Spearman(Vector2D coords) {
         super(70.f, 70, 10, 2, 4, 10,

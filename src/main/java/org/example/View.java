@@ -14,7 +14,7 @@ public class View {
     private static final String bottom10 = formatDiv("g") + String.join("", Collections.nCopies(9, formatDiv("-h"))) + formatDiv("-i");
     private static void tabSetter(int count, int max){
         int dif = max - count + 2;
-        if (dif>0) System.out.printf("%" + dif + "s", ":\t"); else System.out.print(":\t");
+        if (dif>0) System.out.printf("%" + dif + "s", " :\t"); else System.out.print(":\t");
     }
     private static String formatDiv(String str) {
         return str.replace('a', '\u250c')
@@ -36,10 +36,9 @@ public class View {
             if (unit.getCoords()[0] == x && unit.getCoords()[1] == y){
                 if (unit.getHp() == 0) {
                     out = "|" + (AnsiColors.ANSI_RED + unit.getInfo().charAt(0) + AnsiColors.ANSI_RESET);
-                    break;
                 }
-                if (Main.teamChaos.contains(unit)) out = "|" + (AnsiColors.ANSI_GREEN + unit.getInfo().charAt(0) + AnsiColors.ANSI_RESET);
-                if (Main.teamLight.contains(unit)) out = "|" + (AnsiColors.ANSI_BLUE + unit.getInfo().charAt(0) + AnsiColors.ANSI_RESET);
+                else if (Main.teamChaos.contains(unit)) out = "|" + (AnsiColors.ANSI_GREEN + unit.getInfo().charAt(0) + AnsiColors.ANSI_RESET);
+                else if (Main.teamLight.contains(unit)) out = "|" + (AnsiColors.ANSI_BLUE + unit.getInfo().charAt(0) + AnsiColors.ANSI_RESET);
                 break;
             }
         }
@@ -57,10 +56,10 @@ public class View {
         System.out.print("_".repeat(l[0]*2));
         System.out.println("");
         System.out.print(top10 + "    ");
-        System.out.print("Blue side");
-        //for (int i = 0; i < l[0]-9; i++)
+        System.out.print(AnsiColors.ANSI_BLUE + "Blue side");
+//        for (int i = 0; i < l[0]-9; i++)
         System.out.print(" ".repeat(l[0]-9));
-        System.out.println(":\tGreen side");
+        System.out.println(AnsiColors.ANSI_GREEN + " :\tGreen side");
         for (int i = 1; i < 11; i++) {
             System.out.print(getChar(1, i));
         }
