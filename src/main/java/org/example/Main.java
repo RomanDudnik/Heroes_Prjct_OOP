@@ -75,8 +75,8 @@ public class Main {
             @Override
             public int compare(BaseHero t1, BaseHero t2) {
                 if (t2.getInitiative() == t1.getInitiative()) {
-                    return (int) (t2.getHp() - t1.getHp());
-                } else return (int) (t2.getInitiative() - t1.getInitiative());
+                    return (int) (t2.getHp() / t2.getMaxHp() - t1.getHp() / t2.getMaxHp());
+                } else return (t2.getInitiative() - t1.getInitiative());
             }
         });
         return list;

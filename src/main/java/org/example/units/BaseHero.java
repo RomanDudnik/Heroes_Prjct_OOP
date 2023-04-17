@@ -58,6 +58,7 @@ public abstract class BaseHero implements GameInterface {
     // метод для определения порядка хода тиммейтов:
     public int getInitiative() { return initiative;}
     public float getHp() { return hp;}
+    public float getMaxHp() { return maxHp;}
     @Override                // переопределение метода
     public void step(ArrayList<BaseHero> friends, ArrayList<BaseHero> enemies){}
 
@@ -82,6 +83,12 @@ public abstract class BaseHero implements GameInterface {
             state = "Die";
         }
         if (hp > maxHp) hp = maxHp;
+    }
+    protected void getHealth(float damage) {
+        hp += damage;
+        if (hp >= maxHp) {
+            hp = maxHp;
+        }
     }
 
     // метод из игрового интерфеса для получения информации конкретного героя:

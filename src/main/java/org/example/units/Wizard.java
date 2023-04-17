@@ -7,7 +7,7 @@ public class Wizard extends Mage {
     //    protected ArrayList<Spells> spells_book;
     public Wizard (Vector2D coords) {
         super(50.f, 50, 9, -6, -6, 3,
-                4, 5,5, coords.posX, coords.posY, "Thief");
+                4, 5,5, coords.posX, coords.posY, "Wizard");
     }
 
     // реализуем метод интерфеса:

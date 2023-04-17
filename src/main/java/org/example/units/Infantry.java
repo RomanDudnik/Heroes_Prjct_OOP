@@ -11,13 +11,12 @@ public abstract class Infantry extends BaseHero {
 
     @Override
     public void step(ArrayList<BaseHero> friends, ArrayList<BaseHero> enemies) {
-        if (state.equals("Die") || enemies.isEmpty()) return;
+        if (state.equals("Die")) return;
         BaseHero target = enemies.get(findNearest(enemies));
         if (coords.distance(target) < 2) {
             float damage = (target.defense - this.attack)>0
                     ? this.damageMin : (target.defense - this.attack)<0
                     ? this.damageMax : (this.damageMin + this.damageMax)/2;
-            target.getDamage(damage);
         } else {
             if (Math.abs(coords.direction(target)[0]) > Math.abs(coords.direction(target)[1]) && (friendOnWay(friends))) {
                 coords.posX += Math.signum(coords.direction(target)[0]);
